@@ -1,0 +1,55 @@
+\documentclass[10pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=0.5cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+    \begin{sequencediagram}
+        % Instances
+        \newthread{tm}{:TempMonitor}
+        \newinst[]{sr}{:SensorRegistry}
+        % Messages
+        \begin{call}{}{RemoveSensor(sensorID)}{tm}{}
+            \begin{call}{tm}{getSensorID}{sr}{return [isDeployed]}
+            \end{call}
+            \begin{sdblock}{alt}{[isDeployed]}
+                \begin{sdblock}{ref}{RemoveSensorOK(sensorID)}
+                    \begin{call}{}{RemoveSensorOK(sensorID)}{tm}{exit}
+                    \end{call}
+                \end{sdblock}
+                    \begin{call}{tm}{Success()}{tm}{return "OK"}
+                    \end{call}
+            \end{sdblock}
+            \begin{sdblock}{alt}{else}
+                \begin{call}{tm}{SensorNotDeployed}{tm}{return "Sensor not deployed"}
+                \end{call}
+            \end{sdblock}
+        \end{call}
+    \end{sequencediagram}
+
+    \newpage
+    \begin{sequencediagram}
+        % Instances
+        \newthread{tm}{:TempMonitor}
+        \newinst[]{sr}{:SensorRegistry}
+        \newinst[]{sl}{:SensorLocationTable}
+        \newinst[]{st}{:SensorTemperatureTable}
+        % Messages
+        \begin{sdblock}{ref}{Remove(sensorID)}
+            \begin{call}{}{Remove(sensorID))}{tm}{exit}
+                \begin{call}{tm}{getSensor(sensorID)}{sr}{return}
+                    \begin{call}{sr}{setDeployed(false)}{sr}{return}
+                    \end{call}
+                    \begin{call}{sr}{setOutOfService(true)}{sr}{return}
+                    \end{call}
+                \end{call}
+                \begin{call}{tm}{removeSensorLocation(sensorID)}{sl}{return}
+                \end{call}
+                \begin{call}{tm}{removeSensorTemperature(sensorID)}{st}{return}
+                \end{call}
+            \end{call}
+        \end{sdblock}
+    \end{sequencediagram}
+\end{document}

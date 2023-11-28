@@ -1,0 +1,107 @@
+[
+  {
+    "Id": 1,
+    "TagName": "Home",
+    "Latitude": 40.7128,
+    "Longitude": -74.006,
+    "Address": "123 Main St, New York"
+  },
+  {
+    "Id": 2,
+    "TagName": "Office",
+    "Latitude": 34.0522,
+    "Longitude": -118.2437,
+    "Address": "456 Elm St, Los Angeles"
+  },
+  {
+    "Id": 3,
+    "TagName": "Park",
+    "Latitude": 51.5074,
+    "Longitude": -0.1278,
+    "Address": "789 Oak St, London"
+  },
+  {
+    "Id": 4,
+    "TagName": "Mall",
+    "Latitude": 48.8566,
+    "Longitude": 2.3522,
+    "Address": "101 Rue de Rivoli, Paris"
+  },
+  {
+    "Id": 5,
+    "TagName": "Gym",
+    "Latitude": -33.8688,
+    "Longitude": 151.2093,
+    "Address": "200 George St, Sydney"
+  },
+  {
+    "Id": 6,
+    "TagName": "School",
+    "Latitude": 37.7749,
+    "Longitude": -122.4194,
+    "Address": "789 Market St, San Francisco"
+  },
+  {
+    "Id": 7,
+    "TagName": "Hospital",
+    "Latitude": 35.6895,
+    "Longitude": 139.6917,
+    "Address": "123 Shibuya St, Tokyo"
+  },
+  {
+    "Id": 8,
+    "TagName": "Library",
+    "Latitude": 55.7558,
+    "Longitude": 37.6176,
+    "Address": "456 Red Square, Moscow"
+  },
+  {
+    "Id": 9,
+    "TagName": "Cafe",
+    "Latitude": -22.9068,
+    "Longitude": -43.1729,
+    "Address": "101 Copacabana Beach, Rio de Janeiro"
+  },
+  {
+    "Id": 10,
+    "TagName": "Theater",
+    "Latitude": 52.52,
+    "Longitude": 13.405,
+    "Address": "200 Brandenburg Gate, Berlin"
+  },
+  {
+    "Id": 11,
+    "TagName": "Stadium",
+    "Latitude": 37.7749,
+    "Longitude": -122.4194,
+    "Address": "123 Stadium St, San Francisco"
+  },
+  {
+    "Id": 12,
+    "TagName": "Airport",
+    "Latitude": 40.6413,
+    "Longitude": -73.7781,
+    "Address": "789 Airport Ave, New York"
+  },
+  {
+    "Id": 13,
+    "TagName": "Beach",
+    "Latitude": -33.8688,
+    "Longitude": 151.2093,
+    "Address": "456 Beach Blvd, Sydney"
+  },
+  {
+    "Id": 14,
+    "TagName": "Museum",
+    "Latitude": 51.5074,
+    "Longitude": -0.1278,
+    "Address": "101 Museum St, London"
+  },
+  {
+    "Id": 15,
+    "TagName": "Zoo",
+    "Latitude": 48.8566,
+    "Longitude": 2.3522,
+    "Address": "200 Zoo Ave, Paris"
+  }
+]

@@ -1,0 +1,188 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{mdframed}
+\usepackage{needspace}
+%\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor, soul}
+\usepackage{bm}
+%\usepackage{fmtcount}
+\usepackage{ulem}
+
+%\usepackage[utf8]{inputenc}
+
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage[simplified]{pgf-umlcd}
+\usepackage{etoolbox}
+
+%\usepackage{tikz-uml}
+%\usepackage{tikz-cd}
+
+
+\usetikzlibrary{arrows,automata,positioning}
+\usetikzlibrary{arrows.meta}
+
+%\newcommand{\romnummacro}[2]{\uppercase\expandafter{\romannumeral #1\relax} \hspace{\dimexpr(\widthof{#1} + 1 - #2)pt}}
+
+%\newcounter{romanequation}
+%\setcounter{romanequation}{0}
+%\makebox[...]\par
+
+%\renewcommand{\thesection}{\hspace{1cm}\arabic{section}.}
+%\renewcommand{\thesubsection}{\hspace{2cm}\arabic{section}.\arabic{subsection}.}
+%\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{50px}{}
+
+
+%A.C: Added these to have named hexrgb color-coded class blocks/entities to categorize them better
+\definecolor{umlfill1}{HTML}{f2e3c2}
+\definecolor{umltext1}{HTML}{020202}
+\definecolor{umldraw1}{HTML}{5c0505}
+
+%\tikzstyle{umlcd style class} .....
+
+\title{SOEN342: Domain model (Iter. 1 Act. 1)}
+\author{Antoine Cantin \\ 40211205 \and Tuan Anh Pham \\ 40213926  \and Mustafa Sameem \\40190889}
+\date{Fall 2023}
+
+\begin{document}
+	
+	\title{SOEN342: Domain model (Iter. 1 Act. 1)}
+	
+	\author{Antoine Cantin \\ 40211205 \and Tuan Anh Pham \\ 40213926  \and Mustafa Sameem \\40190889}
+	%\begin{center}
+		%\mbox{}%\vfill
+		%\vfill
+	%\end{center}
+	
+	\date{Concordia University \\ Fall 2023}
+	
+	\maketitle
+	
+	%\vspace*{\fill}
+	\vfill
+	
+	\clearpage
+	
+	%\section*{}
+	\renewcommand {\umltextcolor}{umltext1}
+	\renewcommand {\umlfillcolor}{umlfill1}
+	\renewcommand {\umldrawcolor}{umldraw1}
+	
+	
+	\begin{tikzpicture}[scale=0.65] % Adjust the scale to fit within the page
+		\hspace{-2.5cm}
+		
+		
+		
+		\vspace{5\textheight}
+		
+		% Defining the classes and their attributes
+		\begin{class}[text width=2cm]{System}{0,0}
+		
+		\end{class}
+		
+		
+		\begin{class}[text width=3cm]{SensorCatalog}{-12,-4}
+		\end{class}
+		
+		\begin{class}[text width=3cm]{Sensor}{-12,-8}
+			\attribute{- id: String}
+		\end{class}
+		
+		\begin{class}[text width=3cm]{DeployedSensor}{-4,-8}
+			\inherit{Sensor}
+			
+		\end{class}
+		
+		\begin{class}[text width=5cm]{DeployedSensorCatalog}{-4,-4}
+		\end{class}
+		
+
+		
+		\begin{class}[text width=4cm]{LocationCatalog}{4,-4}
+		\end{class}
+		
+		\begin{class}[text width=4cm]{Location}{5,-8}
+			\attribute{- uniqueName: String}
+		\end{class}
+		
+		\begin{class}[text width=5cm]{SensorLocationTable}{-9,-12}
+		\end{class}
+		
+		\begin{class}[text width=4cm]{SensorLocationPair}{0,-12}
+			
+		\end{class}
+		
+		\begin{class}[text width=3cm]{Temperature}{9,-12}
+			\attribute{- value: double}
+
+		\end{class}
+		
+		\begin{class}[text width=6cm]{SensorTemperatureTable}{-7,-16}
+		\end{class}
+		
+		\begin{class}[text width=5cm]{SensorTemperaturePair}{4.5,-16}
+		\end{class}
+		
+		% Defining the associations between the classes
+		% \unidirectionalAssociation {System}{}{1}{SensorCatalog}
+		
+		% \unidirectionalAssociation {System}{}{1}{DeployedSensorCatalog}
+		
+		% \unidirectionalAssociation {System}{}{1}{LocationCatalog}
+		
+		% \unidirectionalAssociation {System}{}{1}{SensorLocationTable}
+		
+		% \unidirectionalAssociation {System}{}{1}{SensorTemperatureTable}
+		\umlnote(note1) at (6,2){ \textit{\small aka "TempMonitor"} };
+		\umlnote(note2) at (-8,-18){ \textit{\small the "read" table } };
+		\umlnote(note3) at (-10,-14){ \textit{\small the "map" table} };
+		\draw[->] (System) -- (-12,-0.25) -- (SensorCatalog);
+		
+		\draw[->] (System) -- (-4,-0.5) -- (DeployedSensorCatalog);
+		
+		\draw[->] (System) -- (4,-0.5) -- (LocationCatalog);
+		
+		\draw[->] (System) -- (0,5) -- (-15,5) -- (-15,-12.5) -- (-13,-12.5);
+		
+		\draw[->] (System) -- (0,6) -- (-16,6) -- (-16,-16.5) -- (-12,-16.5);
+		
+		% The draw below is a temporary fix for broken \inherit in some compiled versions
+		\draw[umldraw1, arrows={-Triangle[angle=90:8pt,umldraw1,fill=white]}] (-6.5,-8.5) -- (-9.5,-8.5);
+		
+		
+		
+		\association[dotted]{note1}{}{}{System}{}{}
+		\association[dotted]{note2}{}{}{SensorTemperatureTable}{}{}
+		\association[dotted]{note3}{}{}{SensorLocationTable}{}{}
+		
+		\association {DeployedSensor}{*}{}{Location}{*}{}
+		
+		\association {SensorLocationPair}{1}{    }{Temperature}{1}{}
+		
+		\aggregation{SensorCatalog}{}{}{Sensor}
+		
+		\aggregation{DeployedSensorCatalog}{}{}{DeployedSensor}
+		
+		\aggregation{LocationCatalog}{}{}{Location}
+		
+		\composition{SensorLocationTable}{}{}{SensorLocationPair}
+		
+		\composition{SensorTemperatureTable}{}{}{SensorTemperaturePair}
+		
+		\draw[dotted] (SensorLocationPair) -- (0,-8.5);
+		
+		\draw[dotted] (SensorTemperaturePair) -- (4.5,-12.5);
+		
+	\end{tikzpicture}
+	
+
+	
+
+\end{document}
+

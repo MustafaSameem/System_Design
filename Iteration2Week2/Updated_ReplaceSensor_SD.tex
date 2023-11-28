@@ -1,0 +1,69 @@
+\documentclass[10pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=0.5cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+    \begin{sequencediagram}
+        % Instances
+        \newthread{c}{:Console}
+        \newinst[6]{tm}{:TempMonitor}
+        \newinst[6]{sr}{:SensorRegistry}
+        % Messages
+            \begin{call}{c}{ReplaceSensor(oldSensorID, newSensorID)}{tm}{}
+                \begin{call}{tm}{getSensorByID(oldSensorID)}{sr}{oldSensor}
+                \end{call}
+                \begin{call}{tm}{getSensorByID(newSensorID)}{sr}{newSensor}
+                \end{call}
+                \begin{call}{tm}{oldSensor.isDeployed()}{tm}{[oldSensor.isDeployed]}
+                \end{call}
+                \begin{sdblock}{alt}{[oldSensor.isDeployed]}
+                    \begin{call}{tm}{newSensor.isDeployed()}{tm}{[newSensor.isDeployed]}
+                    \end{call}
+                    \begin{sdblock}{alt}{[!newSensor.isDeployed]}
+                            \begin{sdblock}{ref}{ReplaceSensorOK(oldSensor, newSensor)}
+                                \begin{call}{}{ReplaceSensorOK(oldSensor, newSensor)}{tm}{exit}
+                                \end{call}
+                            \end{sdblock}
+                            \begin{call}{tm}{Success()}{tm}{return "OK"}
+                            \end{call}
+                    \end{sdblock}
+                    \begin{sdblock}{alt}{[else]}
+                        \begin{call}{tm}{NewSensorAlreadyDeployed}{tm}{return "New sensor already deployed"}
+                        \end{call}
+                    \end{sdblock}
+                \end{sdblock}
+                \begin{sdblock}{alt}{[else]}
+                    \begin{call}{tm}{SensorNotDeployed}{tm}{return "Old sensor not deployed"}
+                    \end{call}
+                \end{sdblock}
+            \end{call}
+    \end{sequencediagram}
+
+    \newpage
+    \begin{sequencediagram}
+        % Instances
+        \newthread{tm}{:TempMonitor}
+        \newinst[3]{sl}{:SensorLocationTable}
+        \newinst[3]{st}{:SensorTemperatureTable}
+        % Messages
+        \begin{sdblock}{ref}{ReplaceSensorOK(oldSensor, newSensor)}
+            \begin{call}{}{ReplaceSensorOK(oldSensor, newSensor)}{tm}{exit}
+            \begin{call}{tm}{getLocation(oldSensor)}{sl}{return location}
+            \end{call}
+            \begin{call}{tm}{getTemperature(oldSensor)}{st}{return temperature}
+            \end{call}
+            \begin{call}{tm}{oldSensor.setDeployed(False)}{tm}{}
+            \end{call}
+            \begin{call}{tm}{newSensor.setDeployed(True)}{tm}{}
+            \end{call}
+            \begin{call}{tm}{replace(oldSensor, newSensor, location)}{sl}{}
+            \end{call}
+            \begin{call}{tm}{replace(oldSensor, newSensor, temperature)}{st}{}
+            \end{call}
+            \end{call}
+        \end{sdblock}
+    \end{sequencediagram}
+\end{document}

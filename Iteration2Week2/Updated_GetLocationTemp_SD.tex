@@ -1,0 +1,29 @@
+\documentclass[10pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=0.5cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+    \begin{sequencediagram}
+        % Instances
+        \newthread{c}{:Console}
+        \newinst[3]{tm}{:TempMonitor}
+        \newinst[3]{sl}{:SensorLocationTable}
+        \newinst[3]{st}{:SensorTemperatureTable}
+        % Messages
+            \begin{call}{c}{getTempByLocation()}{tm}{return LocationTempDict}
+                \begin{call}{tm}{createLocationTempDict}{tm}{return locationTempDict}
+                \end{call}
+                \begin{sdblock}{Loop}{for each sensor}
+                    \begin{call}{tm}{getLocation(sensor)}{sl}{return location}
+                    \end{call}
+                    \begin{call}{tm}{getTemperature(sensor)}{st}{return temperature}
+                    \end{call}
+                    \begin{call}{tm}{addLocationTemp(location, temperature)}{tm}{}
+                    \end{call}
+                \end{sdblock}
+            \end{call}
+    \end{sequencediagram}
+\end{document}

@@ -1,0 +1,84 @@
+\documentclass[10pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=0.5cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+    \begin{sequencediagram}
+        % Instances
+        \newthread{c}{:Console}
+        \newinst{tm}{:TempMonitor}
+        \newinst[]{sr}{:SensorRegistry}
+        \newinst[]{lr}{:LocationRegistry}
+        \newinst[]{sl}{:SensorLocationTable}
+        
+        % Messages
+            \begin{call}{c}{DeploySensor(sensorID, locationID, temperature)}{tm}{exit}
+                \begin{call}{tm}{getSensorByID(sensorID)}{sr}{sensor}
+                \end{call}
+                \begin{call}{tm}{getLocationByID(locationID)}{lr}{location}
+                \end{call}
+                \begin{call}{tm}{sensor.isDeployed()}{tm}{[sensor.isDeployed()]}
+                \end{call}
+                \begin{sdblock}{alt}{[!sensor.isDeployed]}
+                        \begin{call}{tm}{doesExist(locationID)}{lr}{[doesExist]}
+                        \end{call}
+                        \begin{sdblock}{alt}{[doesLocationExist]}
+                            \begin{call}{tm}{isCovered(locationID)}{sl}{[isCovered]}
+                            \end{call}
+                            \begin{sdblock}{alt}{[!isCovered]}
+                                \begin{sdblock}{ref}{DeploySensorOK(sensor, location, temperature)}
+                                    \begin{call}{}{DeploySensorOK(sensor, location, temperature)}{tm}{exit}
+                                    \end{call}
+                                \end{sdblock}
+                                \begin{call}{tm}{Success()}{tm}{return "OK"}
+                                \end{call}
+                            \end{sdblock}
+                            \begin{sdblock}{alt}{[else]}
+                                \begin{call}{tm}{LocationAlreadyCovered()}{tm}{return "Location already covered"}
+                                \end{call}
+                            \end{sdblock}
+                        \end{sdblock}
+                        \begin{sdblock}{alt}{[else]}
+                            \begin{call}{tm}{LocationUnknown()}{tm}{return "Location unknown"}
+                            \end{call}
+                        \end{sdblock}
+                \end{sdblock}
+                \begin{sdblock}{alt}{[else]}
+                    \begin{call}{tm}{SensorAlreadyDeployed()}{tm}{return "Sensor already deployed"}
+                    \end{call}
+                \end{sdblock}
+            \end{call}
+    \end{sequencediagram}
+
+    \newpage
+    \begin{sequencediagram}
+        % Instances
+        \newthread{tm}{:TempMonitor}
+        \newinst[2]{slp}{:SLPair}
+        \newinst[2]{sl}{:SLTable}
+        \newinst[2]{stp}{:STPair}
+        \newinst[2]{st}{:STTable}
+        % Messages
+        \begin{sdblock}{ref}{DeploySensorOK(sensor, location, temperature)}
+            \begin{call}{}{DeploySensorOK(sensor, location, temperature)}{tm}{exit}
+                \begin{call}{tm}{sensor.setDeployed(true)}{tm}{}
+                \end{call}
+                \begin{call}{tm}{create(sensor, location)}{slp}{return sensorLocationPair}
+                \end{call}
+                \begin{call}{tm}{add(sensorLocationPair)}{sl}{}
+                \end{call}
+                \begin{call}{tm}{create(sensor, temperature)}{stp}{return sensorTemperaturePair}
+                \end{call}
+                \begin{call}{tm}{add(sensorTemperaturePair))}{st}{}
+                \end{call}
+            \end{call}
+        \end{sdblock}
+    \end{sequencediagram}
+\end{document}
+
+
+
+

@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=1cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+\newpage
+    \begin{sequencediagram}
+            % Declaring the instances
+            \newthread{c}{:Console}
+            \newinst[5]{tm}{:TempMonitor}
+            \newinst[5]{sl}{:SensorLocationTable}
+    
+            % Declaring the messages
+            \begin{call}{c}{ReadTemperature(locationID)}{tm}{exit}
+                \begin{call}{tm}{isCovered(locationID)}{sl}{[isCovered]}
+                \end{call}
+                \begin{sdblock}{alt}{[isCovered]}
+                    \begin{sdblock}{ref}{ReadTemperatureOK(locationID)}
+                        \begin{call}{}{ReadTemperatureOK(locationID)}{tm}{return temperature}
+                        \end{call}
+                    \end{sdblock}
+                    \begin{call}{tm}{Success()}{tm}{return "OK"}
+                    \end{call}
+                \end{sdblock}
+                \begin{sdblock}{}{[else]}
+                    \begin{call}{tm}{LocationUnknown()}{tm}{return "Location unknown"}
+                    \end{call}
+                \end{sdblock}
+            \end{call}
+    \end{sequencediagram}
+
+    \newpage
+
+    \begin{sequencediagram}
+            \newthread{tm}{:TempMonitor}
+            \newinst[3]{sl}{:SensorLocationTable}
+            \newinst[3]{st}{:SensorTempatureTable}
+    
+            % Declaring the messages
+            \begin{sdblock}{ref}{ReadTemperatureOK(locationID)}
+                \begin{call}{}{ReadTemperatureOK(locationID)}{tm}{return temperature}
+                    \begin{call}{tm}{getSensor(locationID)}{sl}{return sensor}
+                    \end{call}
+                    \begin{call}{tm}{getTemperature(sensor)}{st}{return temperature}
+                    \end{call}
+                \end{call}
+            \end{sdblock}
+    \end{sequencediagram}
+
+    
+\end{document}
+

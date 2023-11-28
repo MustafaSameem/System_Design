@@ -1,0 +1,23 @@
+{
+  "6": {
+    "Id": 13,
+    "TagName": "Beach",
+    "Latitude": -33.8688,
+    "Longitude": 151.2093,
+    "Address": "456 Beach Blvd, Sydney"
+  },
+  "17": {
+    "Id": 11,
+    "TagName": "Stadium",
+    "Latitude": 37.7749,
+    "Longitude": -122.4194,
+    "Address": "123 Stadium St, San Francisco"
+  },
+  "15": {
+    "Id": 5,
+    "TagName": "Gym",
+    "Latitude": -33.8688,
+    "Longitude": 151.2093,
+    "Address": "200 George St, Sydney"
+  }
+}

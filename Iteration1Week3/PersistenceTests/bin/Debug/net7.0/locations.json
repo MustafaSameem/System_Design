@@ -1,0 +1,9 @@
+[
+  {"Id":1,"Latitude":40.7128,"Longitude":-74.006,"Address":"123 Main St","City":"New York","Country":"USA",
+    "Sensor":{"Id":1,"SensorId":"Sensor123","SensorType":"Temperature"}
+  },
+  
+  {"Id":1,"Latitude":40.7128,"Longitude":-74.006,"Address":"123 Main St","City":"New York","Country":"USA",
+    "Sensor":{"Id":1,"SensorId":"Sensor123","SensorType":"Temperature"}
+  }
+]

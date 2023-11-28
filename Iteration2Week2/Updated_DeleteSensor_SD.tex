@@ -1,0 +1,43 @@
+\documentclass[10pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=0.5cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+    \begin{sequencediagram}
+        % Instances
+        \newthread{c}{:Console}
+        \newinst[5]{tm}{:TempMonitor}
+        \newinst[5]{sr}{:SensorRegistry}
+        % Messages
+        \begin{call}{c}{DeleteSensor(sensorID)}{tm}{}
+            \begin{call}{tm}{getSensorByID(sensorID)}{sr}{return sensor}
+            \end{call}
+            \begin{sdblock}{ref}{DeleteSensorOK(sensor)}
+                \begin{call}{}{DeleteSensorOK(sensor)}{tm}{exit}
+                \end{call}
+            \end{sdblock}
+                \begin{call}{tm}{Success()}{tm}{return "OK"}
+                \end{call}
+        \end{call}
+    \end{sequencediagram}
+
+    \newpage
+    \begin{sequencediagram}
+        % Instances
+        \newthread{tm}{:TempMonitor}
+        \newinst[4]{sl}{:SensorLocationTable}
+        \newinst[4]{st}{:SensorTemperatureTable}
+        % Messages
+        \begin{sdblock}{ref}{DeleteSensorOK(sensor)}
+            \begin{call}{}{DeleteSensorOK(sensor)}{tm}{exit}
+                \begin{call}{tm}{delete(sensor)}{sl}{return}
+                \end{call}
+                \begin{call}{tm}{delete(sensor)}{st}{return}
+                \end{call}
+            \end{call}
+        \end{sdblock}
+    \end{sequencediagram}
+\end{document}

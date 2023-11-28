@@ -1,0 +1,163 @@
+[
+  {
+    "Id": 1,
+    "SerialNum": "SN123",
+    "ModelName": "ThermoPro",
+    "LastUpdateDateTime": "2022-11-04T21:59:37",
+    "IsDeployed": false
+  },
+  {
+    "Id": 2,
+    "SerialNum": "SN456",
+    "ModelName": "EcoSense",
+    "LastUpdateDateTime": "2022-08-09T06:28:03",
+    "IsDeployed": false
+  },
+  {
+    "Id": 3,
+    "SerialNum": "SN789",
+    "ModelName": "HeatMaster",
+    "LastUpdateDateTime": "2023-11-02T00:02:38",
+    "IsDeployed": false
+  },
+  {
+    "Id": 4,
+    "SerialNum": "SN101",
+    "ModelName": "TempGuard",
+    "LastUpdateDateTime": "2022-02-13T09:06:11",
+    "IsDeployed": false
+  },
+  {
+    "Id": 5,
+    "SerialNum": "SN202",
+    "ModelName": "ChillMate",
+    "LastUpdateDateTime": "2023-01-29T00:28:49",
+    "IsDeployed": false
+  },
+  {
+    "Id": 6,
+    "SerialNum": "SN303",
+    "ModelName": "FrostAlert",
+    "LastUpdateDateTime": "2023-11-17T12:21:56",
+    "IsDeployed": true
+  },
+  {
+    "Id": 7,
+    "SerialNum": "SN404",
+    "ModelName": "SwiftSense",
+    "LastUpdateDateTime": "2022-07-05T21:50:03",
+    "IsDeployed": false
+  },
+  {
+    "Id": 8,
+    "SerialNum": "SN505",
+    "ModelName": "Polaris",
+    "LastUpdateDateTime": "2022-11-21T02:05:03",
+    "IsDeployed": false
+  },
+  {
+    "Id": 9,
+    "SerialNum": "SN606",
+    "ModelName": "ArcticWatch",
+    "LastUpdateDateTime": "2022-04-24T19:09:53",
+    "IsDeployed": false
+  },
+  {
+    "Id": 10,
+    "SerialNum": "SN707",
+    "ModelName": "FreezeGuard",
+    "LastUpdateDateTime": "2023-07-20T15:51:23",
+    "IsDeployed": false
+  },
+  {
+    "Id": 11,
+    "SerialNum": "SN808",
+    "ModelName": "SensorX",
+    "LastUpdateDateTime": "2023-05-07T14:58:57",
+    "IsDeployed": false
+  },
+  {
+    "Id": 12,
+    "SerialNum": "SN909",
+    "ModelName": "SensorY",
+    "LastUpdateDateTime": "2021-08-14T19:35:01",
+    "IsDeployed": false
+  },
+  {
+    "Id": 13,
+    "SerialNum": "SN1010",
+    "ModelName": "SensorZ",
+    "LastUpdateDateTime": "2023-10-27T19:23:15",
+    "IsDeployed": false
+  },
+  {
+    "Id": 14,
+    "SerialNum": "SN1111",
+    "ModelName": "SensorA",
+    "LastUpdateDateTime": "2021-12-22T03:03:39",
+    "IsDeployed": false
+  },
+  {
+    "Id": 15,
+    "SerialNum": "SN1212",
+    "ModelName": "SensorB",
+    "LastUpdateDateTime": "2023-02-23T11:19:25",
+    "IsDeployed": true
+  },
+  {
+    "Id": 16,
+    "SerialNum": "SN1313",
+    "ModelName": "SensorC",
+    "LastUpdateDateTime": "2021-11-28T13:46:13",
+    "IsDeployed": false
+  },
+  {
+    "Id": 17,
+    "SerialNum": "SN1414",
+    "ModelName": "SensorD",
+    "LastUpdateDateTime": "2022-08-25T10:37:42",
+    "IsDeployed": true
+  },
+  {
+    "Id": 18,
+    "SerialNum": "SN1515",
+    "ModelName": "SensorE",
+    "LastUpdateDateTime": "2023-05-26T06:38:08",
+    "IsDeployed": false
+  },
+  {
+    "Id": 19,
+    "SerialNum": "SN1616",
+    "ModelName": "SensorF",
+    "LastUpdateDateTime": "2023-10-04T18:36:12",
+    "IsDeployed": false
+  },
+  {
+    "Id": 20,
+    "SerialNum": "SN1717",
+    "ModelName": "SensorG",
+    "LastUpdateDateTime": "2023-12-06T04:32:04",
+    "IsDeployed": false
+  },
+  {
+    "Id": 21,
+    "SerialNum": "SN1818",
+    "ModelName": "SensorH",
+    "LastUpdateDateTime": "2021-10-25T17:32:53",
+    "IsDeployed": false
+  },
+  {
+    "Id": 22,
+    "SerialNum": "SN1919",
+    "ModelName": "SensorI",
+    "LastUpdateDateTime": "2022-01-07T20:10:29",
+    "IsDeployed": false
+  },
+  {
+    "Id": 23,
+    "SerialNum": "SN2020",
+    "ModelName": "SensorJ",
+    "LastUpdateDateTime": "2022-02-16T20:58:59",
+    "IsDeployed": false
+  }
+]

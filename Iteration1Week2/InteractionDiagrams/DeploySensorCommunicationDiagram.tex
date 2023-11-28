@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlcd}
+\usepackage{pgf-umlsd}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyhdr}
+% \definecolor{umlfill1}{HTML}{f2e3c2}
+% \definecolor{umltext1}{HTML}{020202}
+% \definecolor{umldraw1}{HTML}{5c0505}
+
+
+% \renewcommand {\umltextcolor}{umltext1}
+% \renewcommand {\umlfillcolor}{umlfill1}
+% \renewcommand {\umldrawcolor}{umldraw1}
+
+
+\begin{document}
+ %    \begin{figure}[H]
+		
+	% 	\hspace{-5cm}
+	% 	\includegraphics[scale=0.60]{a2_q1.png}
+	% \end{figure}
+    \begin{tikzpicture}
+        
+        
+        \begin{object}[text width=3cm]{TempMonitor}{-3,6}
+        \end{object}
+        
+
+        \begin{object}[text width=5cm]{SensorTemperatureTable}{-11,-3}
+        \end{object}
+
+        \begin{object}[text width=5cm]{SensorLocationTable}{-3,-4}
+        \end{object}
+
+
+        \begin{object}[text width=6cm]{DeployedSensorRegistry}{-11,1}
+        \end{object}
+        
+        \draw[->] (-3,8) node[above] {DeploySensor(sensor,location,temperature)} -- (TempMonitor);
+
+        \unidirectionalAssociation{TempMonitor}{1: isDeployed(sensor)}{}{DeployedSensorRegistry}{}{}
+
+        \draw[solid] (-4,6) -- (-4,7) -- (-9,7) -- (-9,4.5) node[midway, align=left] {[doesExist] 5: Success()\\ $$[covered] 4b: LocationAlreadyCovered(location) \\ $$[deployed] 2b: SensorAlreadyDeployed(sensor) } -- (-4,4.5) -- (-4,5.3);
+        % % \draw[solid] (TempMonitor) -- (0,-4);
+        % \unidirectionalAssociation{TempMonitor}{}{[doesExist] 
+        % 2a.1: ReadTemperatureOK(location)}{SensorLocationTable}{}{}
+
+        % \unidirectionalAssociation{SensorLocationTable}{4: temperature := getTemperature(sensor)}{}{SensorTemperatureTable}{}{}
+        
+        \draw[->] (TempMonitor) -- (-3,-3) node[midway, right=-1.5cm,align=left] {2a: [not deployed] isCovered(location) \\ 4a.2: add(new SensorLocation(sensor,location))} -- (SensorLocationTable);
+
+        \draw[->] (TempMonitor) -- (-9,2) node[midway, right=-1.5cm,align=left] {3: [not deployed] DeploySensorOK(...) \\ 4a.2: add(sensor)} -- (DeployedSensorRegistry);
+
+        \unidirectionalAssociation{TempMonitor}{4a.3: add(new SensorTemperature(...))}{}{SensorTemperatureTable}{}{}
+    \end{tikzpicture}
+
+    % \begin{sequencediagram}
+    % \newinst[6]{name}{Instance}
+    % \end{sequencediagram}
+\end{document}

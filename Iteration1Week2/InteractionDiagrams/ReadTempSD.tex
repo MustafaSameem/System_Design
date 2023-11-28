@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage[simplified]{pgf-umlsd}
+\usepackage{tikz}
+\usepackage[margin=1cm]{geometry}  % Set narrow page margins
+
+\begin{document}
+\newpage
+\begin{sequencediagram}
+    \small % Reduce font size
+    % Adjust the width of the diagram
+    \begin{scope}[scale=0.9]
+        % Declaring the instances
+        \newinst{tm}{:TempMonitor}
+        \newinst[]{ds}{:DeployedSensorRegistry}
+        \newinst[]{sl}{:SensorLocationTable}
+        \newinst[]{st}{:SensorTemperatureTable}
+
+        % Declaring the messages
+        \begin{call}{}{DeploySensor(sensor, location, temperature)}{tm}{exit}
+            \begin{call}{tm}{isDeployed(sensor)}{ds}{return [isDeployed]}
+            \end{call}
+            \begin{sdblock}{alt}{[!isDeployed]}
+                \begin{call}{tm}{isCovered(location)}{sl}{return [isCovered]}
+                \end{call}
+                \begin{sdblock}{alt}{[!isCovered]}
+                    \begin{sdblock}{ref}{DeploySensorOK(sensor,location, temperature)}
+                        \begin{call}{tm}{add(sensor)}{ds}{return}
+                        \end{call}
+                        \begin{call}{tm}{add(new SensorLocation(sensor, location))}{sl}{return}
+                        \end{call}
+                        \begin{call}{tm}{add(new SensorTemperature (sensor, temperature))}{st}{return}
+                        \end{call}
+                    \end{sdblock}
+                    \begin{call}{tm}{Success()}{tm}{return "OK"}
+                    \end{call}
+                \end{sdblock}
+                \begin{sdblock}{}{[else]}
+                    \begin{call}{tm}{LocationAlreadyCovered()}{tm}{return "Location already covered"}
+                    \end{call}
+                \end{sdblock}
+            \end{sdblock}
+            \begin{sdblock}{}{[else]}
+                \begin{call}{tm}{SensorAlreadyDeployed()}{tm}{return "Sensor deployed"}
+                \end{call}
+            \end{sdblock}
+        \end{call}
+    \end{scope}
+\end{sequencediagram}
+\end{document}
+
